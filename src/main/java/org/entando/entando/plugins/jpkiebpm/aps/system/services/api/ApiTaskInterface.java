@@ -321,21 +321,24 @@ public class ApiTaskInterface extends KieApiManager {
 
                     ExecutorService executorService = Executors.newFixedThreadPool(10);
                     List<Callable<JAXBTask>> tasksCallables = new ArrayList<>();
-                    for(JAXBTask task : taskList.getList()) {
-                        Long processId = task.getProcessInstanceId();
 
-                        Callable<JAXBTask> taskCallable = () -> {
-                            Map<String, String> vars = this.getKieFormManager().getProcessVariableInstances(bpmConfig, processId+"");
-                            task.setProcessVariables(vars);
-                            return task;
-                        };
+                    if(taskList!=null && taskList.getList()!=null) {
+                        for (JAXBTask task : taskList.getList()) {
+                            Long processId = task.getProcessInstanceId();
 
-                        tasksCallables.add(taskCallable);
+                            Callable<JAXBTask> taskCallable = () -> {
+                                Map<String, String> vars = this.getKieFormManager().getProcessVariableInstances(bpmConfig, processId + "");
+                                task.setProcessVariables(vars);
+                                return task;
+                            };
 
+                            tasksCallables.add(taskCallable);
+
+                        }
+
+                        executorService.invokeAll(tasksCallables);
+                        executorService.shutdown();
                     }
-
-                    executorService.invokeAll(tasksCallables);
-                    executorService.shutdown();
                     return taskList;
                 }
             } catch (Exception e) {
@@ -805,23 +808,26 @@ public class ApiTaskInterface extends KieApiManager {
 
     private void setElementList(String userName, KieBpmConfig bpmConfig, final ApsProperties config, JAXBTaskList taskList) throws ApsSystemException {
         String groups = config.getProperty("groups");
+
         if (groups != null) {
             groups = groups.replace(" ", "");
-            final List<JAXBTask> list = new ArrayList<>();
 
-            Map<String, String> opts = null;
-            if(userName !=null && !userName.isEmpty()) {
-                opts =new HashMap<>();
-                opts.put("user", userName);
-            }
-
-            final List<KieTask> rawList = this.getKieFormManager().getHumanTaskList(bpmConfig, groups, opts);
-            for (final KieTask task : rawList) {
-                task.setConfigId(bpmConfig.getId());
-                list.add(new JAXBTask(task));
-            }
-            taskList.setList(list);
         }
+
+        final List<JAXBTask> list = new ArrayList<>();
+        Map<String, String> opts = null;
+        if(userName !=null && !userName.isEmpty()) {
+            opts =new HashMap<>();
+            opts.put("user", userName);
+        }
+
+        final List<KieTask> rawList = this.getKieFormManager().getHumanTaskList(bpmConfig, groups, opts);
+        for (final KieTask task : rawList) {
+            task.setConfigId(bpmConfig.getId());
+            list.add(new JAXBTask(task));
+        }
+        taskList.setList(list);
+
     }
 
     private void startTasks(KieBpmConfig bpmConfig, List<KieTask> list, HashMap<String, String> opt) {
