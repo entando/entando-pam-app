@@ -221,6 +221,12 @@
 
                 $.ajax({
                     url: action,
+                    beforeSend: function (xhr) {
+                        var accessToken = "${sessionScope.currentUser.accessToken}";
+                        if (accessToken) {
+                            xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
+                        }
+                    },
                     type: 'post',
                     contentType: 'application/json',
                     data: JSON.stringify(postData),

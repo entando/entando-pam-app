@@ -664,7 +664,7 @@ public class ApiTaskInterface extends KieApiManager {
         }
     }
 
-    public void claimTask(KieApiClaimTask claimTask) throws ApiException {
+    public void claimTask(KieApiClaimTask claimTask, Properties properties) throws ApiException {
 
         final String configId = claimTask.getConfigId();
         if (null != configId) {
@@ -679,8 +679,11 @@ public class ApiTaskInterface extends KieApiManager {
                     String containerId = config.getProperty("containerId");
                     String taskId = claimTask.getTaskId();
 
-                    //TODO Check the user passed to the API
+
                     String username = bpmConfig.getUsername();
+                    if(properties.get("apiMethod:user") !=null) {
+                        username = ((User)properties.get("apiMethod:user")).getUsername();
+                    }
 
                     this.getKieFormManager().claimTask(bpmConfig, containerId, taskId, username);
                 }
