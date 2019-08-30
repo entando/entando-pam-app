@@ -56,7 +56,6 @@ import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 public class ApiTaskInterface extends KieApiManager {
 
@@ -903,11 +902,11 @@ public class ApiTaskInterface extends KieApiManager {
     }
 
     private void filterTasksByProcessId(JAXBTaskList taskList, String processDefId) {
-        if (taskList.getList() != null) {
-            List<JAXBTask> filteredTasks = taskList.getList().stream()
-                    .filter(task -> task.getProcessDefinitionId().equals(processDefId))
-                    .collect(Collectors.toList());
-            taskList.setList(filteredTasks);
-        }
+//        if (taskList.getList() != null) {
+//            List<JAXBTask> filteredTasks = taskList.getList().stream()
+//                    .filter(task -> task.getProcessDefinitionId().equals(processDefId))
+//                    .collect(Collectors.toList());
+//            taskList.setList(filteredTasks);
+//        }
     }
 }
