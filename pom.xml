@@ -235,7 +235,7 @@
         <skipDocker>true</skipDocker>
         <skipSmokeTests>true</skipSmokeTests>
         <autoCreateNetwork>true</autoCreateNetwork>
-        <entando.version>5.2.0-SNAPSHOT</entando.version>
+        <entando.version>5.2.0</entando.version>
         <spring.version>5.0.8.RELEASE</spring.version>
         <struts2.version>2.5.17</struts2.version>
         <postgres.driver.version>9.4.1212</postgres.driver.version>
