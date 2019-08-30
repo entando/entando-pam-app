@@ -168,10 +168,6 @@
         });
     };
 
-
-
-
-
     function openDetailsPage(containerId, taskId)
     {
         var context = "<wp:info key="systemParam" paramName="applicationBaseURL" />";
@@ -323,7 +319,7 @@
                   <c:if test="${redirectOnClickRowVar == 'true'}">
                     buttons: extraBtns,
                         onClickRow: function (event, rowData) {
-                        openDetailsPage(rowData.containerId , rowData.id);
+                        openDetailsPage(this.parentContainerId , rowData.id);
                         }
                     </c:if>
                     <c:if test="${redirectOnClickRowVar == 'false'}">
@@ -372,6 +368,7 @@
                         var containerId = data.response.result.taskList.containerId;
 
                         extraConfig.columnDefinition = data.response.result.taskList["datatable-field-definition"].fields;
+                        extraConfig.parentContainerId = data.response.result.taskList["containerId"]
                         org.entando.datatable.CustomDatatable(items, idTable, extraConfig, containerId);
                 });
         };
