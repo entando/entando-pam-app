@@ -61,7 +61,7 @@ hr {
 }
 .btn-default {
     color: #000;
-    border: 1px solid #333;    
+    border: 1px solid #333;
     background-color: #ffffff;
 }
 .btn-default:hover {
@@ -233,7 +233,7 @@ tr.details td.details-control {
     font-weight: 700;
 }
 
-#bpm-task-details-ibox-content > div > div > p{    
+#bpm-task-details-ibox-content > div > div > p{
    margin: 10px 0 0 0;
    min-height: 90px;
 }
@@ -247,7 +247,7 @@ tr.details td.details-control {
     padding: 10px;
 }
 .container-bpm{
-    margin-top:0px !important; 
+    margin-top:0px !important;
 }
 
 body > footer > div > div {

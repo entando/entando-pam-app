@@ -379,7 +379,6 @@
 
 </script>
 
-<h1>"${sessionScope.currentUser.accessToken}"</h1>
 <table id="data-table-task-list" class="display nowrap" cellspacing="0" width="100%"></table>
 
 <div id="bpm-task-list-modal-data">
