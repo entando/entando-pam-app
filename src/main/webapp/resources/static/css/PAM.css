@@ -104,7 +104,7 @@ hr {
     background-color: #f0f4f6;
 }
 .footer2 {
-    background-color: #1e3654;
+    background-color: #508bbe;
     color: #636e74;
     font-weight: 400;
     font-size: 17px;
@@ -256,7 +256,7 @@ body > footer > div > div {
 
 .logo {
     max-height:95px;
-    max-width:500px;
+    max-width:300px;
     height:auto;
     width:auto;
 

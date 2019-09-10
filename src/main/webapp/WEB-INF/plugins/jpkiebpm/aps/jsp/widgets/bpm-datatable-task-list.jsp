@@ -267,7 +267,7 @@
             var extraBtns = [
             <c:if test="${showClaimButtonVar == 'true'}">
             {
-                html: '<button type="button" class="class-open-bpm-task-list-modal-form-details btn btn-success btn-sm" style="margin-right:10px;">Presi in Carico</button>',
+                html: '<button type="button" class="class-open-bpm-task-list-modal-form-details btn btn-success btn-sm" style="margin-right:10px;">Claim</button>',
                     onClick: function (ev, data) {
                         if (data.status=='Ready') {
                             claimTask(ev, configId, data.id, context);
